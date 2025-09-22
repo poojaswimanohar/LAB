@@ -1,0 +1,4 @@
+Online Quiz Maker using Google Colab
+Input: Student quiz submissions (MCQ + written answers).
+Processing: NLP pipeline with GPT/BERT for grammar correction, text normalization, semantic similarity scoring, and partial credit assignment.
+Output: Automated grading, real-time personalized feedback, scalable and fair assessment.
