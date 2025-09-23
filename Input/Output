@@ -2,3 +2,38 @@ Online Quiz Maker using Google Colab
 Input: Student quiz submissions (MCQ + written answers).
 Processing: NLP pipeline with GPT/BERT for grammar correction, text normalization, semantic similarity scoring, and partial credit assignment.
 Output: Automated grading, real-time personalized feedback, scalable and fair assessment.
+
+
+# Simple Quiz Program in Python
+
+score = 0
+
+print("Welcome to the Quiz!\n")
+
+# Question 1 - MCQ
+print("Q1: Which planet is known as the Red Planet?")
+print("A) Earth")
+print("B) Mars")
+print("C) Jupiter")
+print("D) Venus")
+ans1 = input("Your answer (A/B/C/D): ")
+
+if ans1.upper() == "B":
+    print("Correct!\n")
+    score += 1
+else:
+    print("Wrong! The correct answer is B) Mars\n")
+
+# Question 2 - Written
+print("Q2: Who is known as the father of computers?")
+ans2 = input("Your answer: ")
+
+if "charles babbage" in ans2.lower():
+    print("Correct!\n")
+    score += 1
+else:
+    print("Wrong! The correct answer is Charles Babbage\n")
+
+# Final Score
+print("Your Final Score:", score, "/ 2")
+
