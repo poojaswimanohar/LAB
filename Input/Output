@@ -34,6 +34,33 @@ if "charles babbage" in ans2.lower():
 else:
     print("Wrong! The correct answer is Charles Babbage\n")
 
+
+# Simple Written Answer Quiz
+
+score = 0
+
+print("Welcome to the Written Answer Quiz!\n")
+
+# Question 1
+q1 = input("Q1: Who is known as the father of computers? \nYour answer: ")
+if q1.strip().lower() == "charles babbage":
+    print("Correct!\n")
+    score += 1
+else:
+    print("Wrong! The correct answer is Charles Babbage\n")
+
+# Question 2
+q2 = input("Q2: What is the capital of France? \nYour answer: ")
+if q2.strip().lower() == "paris":
+    print("Correct!\n")
+    score += 1
+else:
+    print("Wrong! The correct answer is Paris\n")
+
+# Final Score
+print(" Your Final Score:", score, "/ 2")
+
+
 # Final Score
 print("Your Final Score:", score, "/ 2")
 
