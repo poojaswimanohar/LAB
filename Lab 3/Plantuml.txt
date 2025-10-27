@@ -1,0 +1,64 @@
+@startuml
+' Quiz Grading Process - AI-Enhanced Workflow
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontSize 11
+  RoundCorner 15
+}
+
+title Quiz Grading Process Workflow
+
+start
+
+partition "Student" {
+  :Student Submits Quiz;
+}
+
+partition "System" {
+  :Collect Student Response;
+  note right
+    Raw Answer Repository
+  end note
+
+  fork
+    :Perform Grammar and Spell Check;
+  fork again
+    :Tokenize and Normalize Text;
+  end fork
+  :Preprocessing Student Answer Complete;
+
+  if (Is Answer Valid?) then (No)
+    :Generate Feedback Message;
+    note right
+      Feedback Message
+    end note
+    :Send Grade and Feedback;
+    stop
+  else (Yes)
+    :Assign Grade and Partial Credit;
+    note right
+      Grading Log Updated
+    end note
+  endif
+
+  if (Flag for Manual Review?) then (Yes)
+    :Send to Manual Review;
+  else (No)
+    :Send Grade and Feedback;
+    stop
+  endif
+}
+
+partition "Manual Reviewer" {
+  :Assign Grade;
+  note right
+    Grade Sheet Updated
+  end note
+  :Send Grade and Feedback;
+}
+
+stop
+@enduml
