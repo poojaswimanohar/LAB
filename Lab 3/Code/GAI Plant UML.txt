@@ -1,0 +1,106 @@
+@startuml
+' AI-enhanced Quiz Grading Workflow - Activity diagram with swimlanes and GAI agents
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontSize 11
+  RoundCorner 15
+}
+
+title Quiz Grading Process Workflow (with GAI agents)
+
+start
+
+partition "Student" {
+  :Student Submits Quiz;
+}
+
+partition "System" {
+  :Collect Student Response;
+  note right
+    Raw Answer Repository
+  end note
+
+  fork
+    :Perform Grammar and Spell Check;
+  fork again
+    :Tokenize and Normalize Text;
+  end fork
+  :Preprocessing Student Answer Complete;
+
+  if (Is Answer Valid?) then (No)
+    :Generate Feedback Message;
+    note right
+      Feedback Message Created
+    end note
+    :Send Grade and Feedback;
+    stop
+  else (Yes)
+    :Assign Grade and Partial Credit;
+    note right
+      Grading Log Updated
+    end note
+  endif
+
+  if (Flag for Manual Review?) then (Yes)
+    :Send to Manual Review;
+  else (No)
+    :Send Grade and Feedback;
+    stop
+  endif
+}
+
+partition "Manual Reviewer" {
+  :Assign Grade;
+  note right
+    Grade Sheet Updated
+  end note
+  :Send Grade and Feedback;
+}
+
+' --------- GAI Agents Layer ---------
+partition "GAI Agents" {
+  :GAI Response Analyzer;
+  note right
+    🧩 Processes & cleans student responses\n
+    Detects grammar/spelling issues,\nnormalizes and structures input
+  end note
+  --.-> :Perform Grammar and Spell Check
+  --.-> :Tokenize and Normalize Text
+
+  :GAI Answer Validator;
+  note right
+    🧠 Validates answers against reference data\n
+    Detects plagiarism or incomplete answers
+  end note
+  --.-> :Is Answer Valid?
+
+  :GAI Grading Assistant;
+  note right
+    🏅 Suggests partial credits & auto grades\n
+    Logs rationale for transparency
+  end note
+  --.-> :Assign Grade and Partial Credit
+
+  :GAI Review Supporter;
+  note right
+    👩‍🏫 Highlights areas needing manual attention\n
+    Summarizes ambiguous responses for reviewers
+  end note
+  --.-> :Send to Manual Review
+
+  :GAI Feedback Generator;
+  note right
+    💬 Generates personalized feedback summaries\n
+    Suggests improvements and motivational comments
+  end note
+  --.-> :Generate Feedback Message
+  --.-> :Send Grade and Feedback
+}
+
+:Quiz Grading Completed;
+stop
+
+@enduml

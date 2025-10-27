@@ -1,0 +1,98 @@
+@startuml
+title AI-Enhanced Sequence for Automated Quiz Grading (with Feedback & Manual Review)
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam participant {
+BackgroundColor #EAF6FF
+BorderColor #336699
+}
+skinparam actorStyle awesome
+skinparam note {
+BackgroundColor #FEFBEA
+BorderColor #CCCC99
+}
+
+actor "Student" as Student
+participant "Quiz System" as System
+participant "Grammar & Spell Checker" as GrammarAI
+participant "Text Normalizer" as TextAI
+participant "Validation Engine" as Validator
+participant "Auto-Grader" as Grader
+participant "Manual Reviewer" as Reviewer
+participant "Feedback Generator" as FeedbackAI
+participant "Grade Database" as GradeDB
+participant "Dashboard / Report System" as Report
+
+== Quiz Submission ==
+Student -> System : Submit Quiz Responses
+System -> System : Collect Student Responses
+System --> GradeDB : Store Raw Answers
+
+== Preprocessing ==
+System -> GrammarAI : Perform Grammar & Spell Check
+activate GrammarAI
+note right of GrammarAI
+Corrects spelling errors and grammar\nbefore grading.
+end note
+GrammarAI --> System : Return Cleaned Text
+deactivate GrammarAI
+
+System -> TextAI : Tokenize and Normalize Text
+activate TextAI
+note right of TextAI
+Converts answers into analyzable tokens\nand standard text format.
+end note
+TextAI --> System : Return Normalized Answers
+deactivate TextAI
+
+== Validation ==
+System -> Validator : Check Answer Validity
+activate Validator
+note right of Validator
+Ensures answers meet format and\ncontent criteria for grading.
+end note
+Validator --> System : Return Valid / Invalid
+deactivate Validator
+
+alt Answer Invalid
+System -> FeedbackAI : Generate Feedback Message
+activate FeedbackAI
+note right of FeedbackAI
+Creates personalized feedback for\ninvalid or incomplete answers.
+end note
+FeedbackAI --> Student : Send Feedback Message
+deactivate FeedbackAI
+else Answer Valid
+System -> Grader : Assign Grade and Partial Credit
+activate Grader
+Grader --> GradeDB : Log Grading Data
+note right of Grader
+Calculates scores and stores them\nin the grading database.
+end note
+deactivate Grader
+
+Grader -> System : Return Grade and Review Flag
+
+alt Flagged for Manual Review
+System -> Reviewer : Send Submission for Manual Review
+activate Reviewer
+Reviewer -> Reviewer : Evaluate and Assign Final Grade
+Reviewer --> GradeDB : Update Grade Sheet
+deactivate Reviewer
+end alt
+
+System -> FeedbackAI : Generate Feedback Summary
+activate FeedbackAI
+FeedbackAI --> Report : Send Grade + Feedback
+deactivate FeedbackAI
+
+Report --> Student : Display Final Grade and Feedback
+end alt
+
+== Completion ==
+note over Student,Report
+Quiz grading completed.\nStudent receives results and insights.
+end note
+
+@enduml

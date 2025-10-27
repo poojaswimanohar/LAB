@@ -1,0 +1,79 @@
+@startuml
+title GAI Agents in Quiz Grading Workflow
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #EAF6FF
+  BorderColor #336699
+  FontColor #000000
+  FontSize 12
+  FontStyle bold
+}
+skinparam note {
+  BackgroundColor #FEFBEA
+  BorderColor #CCCC99
+  FontColor #000000
+}
+
+start
+
+:GAI Response Analyzer;
+note right
+  🧩 Processes and cleans student answers\n
+  - Detects grammar and spelling errors\n
+  - Normalizes text and structures responses\n
+  - Flags incoherent or incomplete answers
+end note
+
+:GAI Answer Validator;
+note right
+  🧠 Evaluates validity of responses\n
+  - Checks answer completeness\n
+  - Compares content with reference solutions\n
+  - Detects possible plagiarism or invalid entries
+end note
+
+if (Answer valid?) then (No)
+  :GAI Feedback Generator;
+  note right
+    💬 Creates personalized feedback message\n
+    - Suggests improvements and corrections\n
+    - Explains mistakes in plain language\n
+    - Sends message to student
+  end note
+  stop
+else (Yes)
+  :GAI Grading Assistant;
+  note right
+    🏅 Assigns automatic grades and partial credits\n
+    - Uses rubric-based scoring\n
+    - Logs grading decision for transparency\n
+    - Detects ambiguous responses needing review
+  end note
+endif
+
+if (Flag for manual review?) then (Yes)
+  :GAI Review Supporter;
+  note right
+    👩‍🏫 Assists human reviewers\n
+    - Highlights key evaluation areas\n
+    - Summarizes student intent\n
+    - Provides justification suggestions
+  end note
+  :Manual Reviewer Assigns Final Grade;
+else (No)
+  :GAI Feedback Generator;
+  note right
+    💬 Prepares and sends grade summary\n
+    - Combines final grade and feedback\n
+    - Stores result in grading log
+  end note
+endif
+
+:Quiz Grading Completed;
+
+stop
+@enduml
+
+
