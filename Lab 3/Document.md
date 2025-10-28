@@ -44,6 +44,5 @@
 
 -   Large user base for immediate impact
 
--   Supports both **zero-shot** (new content) and **few-shot** (guided)
-    AI interactions
+
 
