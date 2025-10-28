@@ -1,1 +1,11 @@
+You are an AI Quiz Agent. 
+Task: Generate a multiple-choice question from the following study material, and provide the correct answer. 
+
+Study Material (X):
+"Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods from carbon dioxide and water. It generally involves the green pigment chlorophyll and generates oxygen as a by-product."
+
+Instruction:
+Generate a new multiple-choice question with 4 options, label the correct answer clearly.
+
+Output (y):
 
