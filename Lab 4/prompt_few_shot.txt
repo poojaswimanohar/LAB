@@ -1,0 +1,31 @@
+You are an AI Quiz Agent. 
+Task: Generate a multiple-choice question from the study material, using the examples below as guidance. Provide the correct answer clearly.
+
+Known examples:
+1.
+Material: "Water boils at 100°C at standard atmospheric pressure."
+Question: "At what temperature does water boil at standard atmospheric pressure?"
+Options: 
+A) 90°C 
+B) 100°C 
+C) 80°C 
+D) 120°C
+Answer: B
+
+2.
+Material: "The capital of France is Paris."
+Question: "What is the capital of France?"
+Options:
+A) Berlin
+B) Madrid
+C) Paris
+D) Rome
+Answer: C
+
+New observation (X):
+"Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods from carbon dioxide and water. It generally involves the green pigment chlorophyll and generates oxygen as a by-product."
+
+Instruction:
+Generate a new multiple-choice question and mark the correct answer.
+
+Output (y):
