@@ -186,4 +186,6 @@ def generate_quiz_and_grade(student_input, course_domain, examples=None):
 
 ---
 
+Evaluation Metrics (From RAGAS Framework)
 
+Both zero-shot and few-shot prompts support automated quality assessment.
