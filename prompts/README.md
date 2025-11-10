@@ -6,8 +6,7 @@ The system ensures scalability, fairness, and educational efficiency through ada
 
 ---
 
-## 🏗️ System Architecture Concept
-The AI agent functions as an end-to-end quiz automation pipeline:
+## System Architecture
 
 ```mermaid
 graph TD;
@@ -19,6 +18,7 @@ graph TD;
     F --> G["AI Grading & Feedback Generation"];
     G --> H["Performance Summary & Analytics"];
     H --> I["Output (y)"];
+
 
 System Input and Output
 
