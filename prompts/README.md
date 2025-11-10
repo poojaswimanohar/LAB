@@ -113,6 +113,6 @@ This directory contains prompt examples for the **AI-powered Online Quiz Maker**
 - Ensures **structured output**: quizzes, scores, and feedback in a standardized format  
 - Integrates **GPT/BERT grading models** for reliable evaluation  
 - Easy to extend with additional domains or question types  
-- Fully compatible with **Google Colab** environment for education-focused deployments  
+- Fully compatible with **Google Colab** environment for education-focused deployments
 
 
