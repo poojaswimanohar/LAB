@@ -181,4 +181,20 @@ def generate_quiz_and_grade(student_input, course_domain, examples=None):
 
     return validated_output
 
+# Evaluation Metrics (Adapted from RAGAS Framework)
+
+Both zero-shot and few-shot prompts support **automated quality assessment** of generated quizzes and AI grading results.
+
+| Metric                     | Description                                           | Target |
+|-----------------------------|-------------------------------------------------------|--------|
+| **Faithfulness**            | Generated quizzes and grades are grounded in input content | ≥ 0.90 |
+| **Answer Relevance**        | AI-graded responses align with expected answers and learning objectives | ≥ 0.90 |
+| **Technical Term Coverage** | Domain-specific terminology is correctly recognized and used | ≥ 0.85 |
+| **Scoring Accuracy**        | Scores and feedback match grading rubrics and standards | ≥ 0.95 |
+| **Recall@k**                | Expected correct answers or key points appear in top-k AI outputs | ≥ 0.80 |
+
+### Notes:
+- These metrics ensure that the **quiz generation and grading process is accurate, consistent, and reliable**.  
+- They can be **automatically computed** in Google Colab using the structured outputs from the AI agent.  
+- Metrics like **Faithfulness** and **Answer Relevance** help maintain **educational integrity**, while **Technical Term Coverage** ensures domain correctness.
 
