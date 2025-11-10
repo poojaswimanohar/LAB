@@ -143,3 +143,45 @@ This directory contains prompt examples for the **AI-powered Online Quiz Maker**
 
 This workflow ensures that your AI agent can **automatically generate quizzes, grade student responses, and provide feedback** with high reliability and consistency in a Google Colab environment.
 
+# Evaluation Metrics (Adapted from RAGAS Framework)
+
+Both zero-shot and few-shot prompts support **automated quality assessment** of generated quizzes and AI-graded responses.
+
+| Metric                     | Description                                           | Target |
+|-----------------------------|-------------------------------------------------------|--------|
+| **Faithfulness**            | Generated quizzes and grades are grounded in source content | ≥ 0.90 |
+| **Answer Relevance**        | AI-graded responses align with expected answers or learning objectives | ≥ 0.90 |
+| **Technical Term Coverage** | Domain-specific terminology is correctly recognized and applied | ≥ 0.85 |
+| **Compliance / Standards Score** | Generated content aligns with course or regulatory standards | ≥ 0.95 |
+| **Recall@k**                | Expected correct answers, key points, or learning objectives appear within the top-k AI outputs | ≥ 0.80 |
+
+---
+
+## Pseudocode Example
+
+```python
+def extract_requirements(document, domain, standards):
+    """
+    RAG-style pipeline for extracting structured requirements.
+    """
+
+    # 1. Preprocess document
+    cleaned_doc = preprocess(document)
+    
+    # 2. Retrieve relevant context from knowledge base
+    context = rag_retrieval(cleaned_doc, domain)
+    
+    # 3. Construct prompt with context
+    if has_training_examples:
+        prompt = construct_few_shot_prompt(cleaned_doc, context, examples)
+    else:
+        prompt = construct_zero_shot_prompt(cleaned_doc, context)
+    
+    # 4. Generate requirements via LLM
+    requirements = llm.generate(prompt)
+    
+    # 5. Validate and structure output
+    validated_frs = validate_requirements(requirements, standards)
+    
+    return validated_frs
+
