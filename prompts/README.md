@@ -22,4 +22,7 @@ graph TD;
     G --> H["Performance Summary & Analytics"];
     H --> I["Output (y)"];
 
+System Input and Output
 
+Input (X): Topic, syllabus, learning material, or student responses
+Output (y): Generated quiz, graded answers, feedback, and performance summary
