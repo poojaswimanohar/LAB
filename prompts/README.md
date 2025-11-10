@@ -9,20 +9,18 @@ The system ensures scalability, fairness, and educational efficiency through ada
 ## 🏗️ System Architecture Concept
 The AI agent functions as an end-to-end quiz automation pipeline:
 
-```text
-Input (X) → [AI Agent Pipeline] → Output (y)
-         ↓
-    [Topic / Material Processing]
-         ↓
-    [Question Generation (MCQ, Short, Descriptive)]
-         ↓
-    [AI-Based Grading (GPT / BERT)]
-         ↓
-    [Feedback & Scoring]
-         ↓
-    [Performance Summary & Analytics]
-         ↓
-    Structured Quiz Output (Questions, Answers, Grades, Feedback)
+## System Architecture
+
+```mermaid
+graph TD;
+    A["Input (X)"] --> B["AI Agent Pipeline"];
+    B --> C["Data Understanding"];
+    C --> D["Question Generation"];
+    D --> E["Quiz Structuring & Formatting"];
+    E --> F["Response Evaluation"];
+    F --> G["AI Grading & Feedback Generation"];
+    G --> H["Performance Summary & Analytics"];
+    H --> I["Output (y)"];
 
 ## System Input and Output
 
