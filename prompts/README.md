@@ -185,17 +185,10 @@ def extract_requirements(document, domain, standards):
     
     return validated_frs
 
----
-
-
-# Evaluation Metrics (From RAGAS Framework)
-
-Both zero-shot and few-shot prompts support **automated quality assessment** of generated quizzes and AI-graded responses.
-
-| Metric                     | Description                                   | Target |
-|-----------------------------|-----------------------------------------------|--------|
-| **Faithfulness**            | Functional Requirements (FRs) are grounded in source content | ≥ 0.90 |
-| **Answer Relevance**        | FRs address the intent of the input document | ≥ 0.90 |
-| **Technical Term Coverage** | Domain-specific terminology is captured accurately | ≥ 0.85 |
-| **Compliance Score**        | Alignment with relevant regulatory or domain standards | ≥ 0.95 |
-| **Recall@k**                | Expected FRs appear within the top-k generated outputs | ≥ 0.80 |
+| Metric                           | Description                                                                                        | Target |
+| -------------------------------- | -------------------------------------------------------------------------------------------------- | ------ |
+| **Faithfulness**                 | Generated quizzes and grades are grounded in source content (input material or syllabus)           | ≥ 0.90 |
+| **Answer Relevance**             | AI-graded responses align with expected answers or learning objectives                             | ≥ 0.90 |
+| **Technical Term Coverage**      | Domain-specific terminology is correctly recognized and applied in questions and answers           | ≥ 0.85 |
+| **Compliance / Standards Score** | Generated content aligns with course or regulatory standards (curriculum, guidelines, HIPAA, etc.) | ≥ 0.95 |
+| **Recall@k**                     | Expected correct answers, key points, or learning objectives appear within the top-k AI outputs    | ≥ 0.80 |
