@@ -25,6 +25,8 @@ graph TD;
     F --> G["AI Grading & Feedback Generation"];
     G --> H["Performance Summary & Analytics"];
     H --> I["Output (y)"];
+```
+
 Input (X): Topic, syllabus, or student responses
 Output (y): Generated quiz, grading, feedback, and performance summary
 
