@@ -30,14 +30,15 @@ graph TD;
 Input (X): Topic, syllabus, or student responses
 Output (y): Generated quiz, grading, feedback, and performance summary
 
-📂 Prompt Files
-1️⃣ simple_zero_shot_prompt.md
+**📂 Prompt Files
 
-Type: Zero-Shot Learning
-Purpose: Demonstrates single-instance quiz generation and grading without prior examples.
-Use Case: Generate a new quiz for a given topic with no existing data.
+1️⃣ simple_zero_shot_prompt.md**
 
-Key Features:
+**Type**: Zero-Shot Learning
+**Purpose**: Demonstrates single-instance quiz generation and grading without prior examples.
+**Use Case**: Generate a new quiz for a given topic with no existing data.
+
+**Key Features:**
 
 Generates multiple-choice and short-answer questions
 
@@ -47,16 +48,16 @@ Works directly in Google Colab
 
 Evaluates difficulty and confidence
 
-Example Domain:
+**Example Domain:**
 Intro to Python Programming
 
-2️⃣ few_shot_prompt.md
+**2️⃣ few_shot_prompt.md**
 
-Type: Few-Shot Learning
-Purpose: Demonstrates quiz generation after learning from multiple (X,y) examples.
-Use Case: Improved quiz quality and grading accuracy when example quizzes and answers are provided.
-
-Key Features:
+**Type:** Few-Shot Learning
+**Purpose:** Demonstrates quiz generation after learning from multiple (X,y) examples.
+**Use Case:** Improved quiz quality and grading accuracy when example quizzes and answers are provided.
+**
+Key Features:**
 
 Learns structure and tone from prior quizzes
 
@@ -64,7 +65,7 @@ Applies patterns from multiple examples (Math, Science, CS)
 
 Maintains consistent formatting and fairness in grading
 
-Training Examples Included:
+**Training Examples Included:**
 
 Python Programming (Data Types, Loops)
 
@@ -72,24 +73,24 @@ Mathematics (Functions and Equations)
 
 General Knowledge (History, Geography)
 
-New Task: AI Basics (Machine Learning Concepts)
+**New Task**: AI Basics (Machine Learning Concepts)
 
 🧠 How to Use These Prompts
 For Students or Educators
 
-Choose a prompt type:
+**Choose a prompt type:**
 
 Use Zero-Shot for quick quiz creation
 
 Use Few-Shot for improved consistency
 
-In Google Colab:
+**In Google Colab:**
 
 Upload your topic or document (PDF, text, etc.)
 
 Run the prompt with your LLM integration
 
-View:
+**View:**
 
 Generated quiz
 
@@ -116,20 +117,20 @@ def generate_and_grade_quiz(topic, student_answers=None):
         return summary
     
     return formatted_quiz
-
-🧾 Evaluation Metrics
+**
+🧾 Evaluation Metrics**
 | Metric                 | Description                        | Target |
 | :--------------------- | :--------------------------------- | :----: |
 | Question Relevance     | Quiz matches given topic           | ≥ 0.90 |
 | Grading Accuracy       | AI grades match correct answers    | ≥ 0.95 |
 | Feedback Quality       | Feedback is meaningful and clear   | ≥ 0.90 |
 | Confidence Reliability | Confidence aligns with correctness | ≥ 0.85 |
-
-🧠 Domain-Specific Adaptations
+**
+🧠 Domain-Specific Adaptations**
 
 The prompts can be adapted for various domains by modifying:
 
-Subjects:
+**Subjects:**
 
 Computer Science → Python, C, AI
 
@@ -147,7 +148,7 @@ Subjective (Short/Long Answers)
 
 Mixed
 
-Grading Modes:
+**Grading Modes:**
 
 Rule-based scoring
 
@@ -155,7 +156,7 @@ LLM-based semantic evaluation
 
 Hybrid (weighted scoring + reasoning)
 
-🧮 Expected Output Format
+**🧮 Expected Output Format**
 
 All prompts generate structured results in this format:
 
@@ -169,7 +170,7 @@ Score: 1.0
 Feedback: Correct! You understood the concept of exponentiation.  
 Confidence Score: 0.97  
 
-✅ Validation Checklist
+**✅ Validation Checklist**
 
 Before considering the output final, ensure:
 
@@ -185,7 +186,7 @@ Before considering the output final, ensure:
 
  No hallucinated or irrelevant questions
 
-🧰 Key Technologies
+**🧰 Key Technologies**
 
 Google Colab for execution
 
@@ -197,7 +198,7 @@ JSON / Pandas for structured output
 
 Matplotlib for analytics and performance visualization
 
-🧾 Example Evaluation Summary
+**🧾 Example Evaluation Summary**
 
 | Student | Total Questions | Correct | Score (%) | Feedback Summary                          |
 | :------ | :-------------- | :------ | :-------- | :---------------------------------------- |
@@ -205,7 +206,7 @@ Matplotlib for analytics and performance visualization
 | Priya   | 5               | 5       | 100%      | Excellent performance                     |
 | Amir    | 5               | 3       | 60%       | Needs more practice on operators          |
 
-🧠 Related Files
+**🧠 Related Files**
 
 simple_zero_shot_prompt.md
  – Example of generating a new quiz without prior data
@@ -213,7 +214,7 @@ simple_zero_shot_prompt.md
 few_shot_prompt.md
  – Example of generating improved quizzes after training on examples
 
-🧩 References
+**🧩 References**
 
 Google Colab Documentation
 
