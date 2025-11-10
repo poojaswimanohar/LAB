@@ -6,19 +6,16 @@ The system allows educators to automatically generate quizzes, grade both object
 
 The AI agent is conceptualized as an **end-to-end solution**:
 
-Input (X) → [AI Agent Pipeline] → Output (y)
-↓
-[Data Understanding]
-↓
-[Question Generation]
-↓
-[Quiz Structuring & Formatting]
-↓
-[Response Evaluation (Objective & Subjective)]
-↓
-[AI Grading & Feedback Generation]
-↓
-[Performance Summary & Analytics]
+```mermaid
+graph TD;
+    X[Input (X)] --> Pipeline[AI Agent Pipeline] --> Y[Output (y)];
+    Pipeline --> DU[Data Understanding];
+    DU --> QG[Question Generation];
+    QG --> QS[Quiz Structuring & Formatting];
+    QS --> RE[Response Evaluation (Objective & Subjective)];
+    RE --> AG[AI Grading & Feedback Generation];
+    AG --> PS[Performance Summary & Analytics];
+
 
 **Input (X):** Topic, syllabus, learning material, or student responses  
 **Output (y):** Generated quiz, graded answers, feedback, and performance summary  
