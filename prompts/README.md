@@ -115,4 +115,32 @@ This directory contains prompt examples for the **AI-powered Online Quiz Maker**
 - Easy to extend with additional domains or question types  
 - Fully compatible with **Google Colab** environment for education-focused deployments
 
+# How to Use These Prompts
+
+## For Educators / Developers:
+
+### 1. Choose the appropriate prompt type:
+- **Use Zero-Shot** for quickly generating quizzes or grading student responses without prior examples.  
+- **Use Few-Shot** for consistent quiz creation and grading when you have example quizzes or answers available.  
+
+### 2. Customize the input section:
+- Replace the sample **Quiz Content** with your actual questions or student responses.  
+- Specify the **Course/Domain** (e.g., Computer Science, Mathematics, Business).  
+- Set the **Question Type** (MCQ, Short Answer, Essay) as needed.  
+- Optionally, provide previous examples for **Few-Shot** prompts to improve grading accuracy.  
+
+### 3. Submit to an LLM:
+- Use models like **GPT-4, BERT, or other fine-tuned models** integrated within Google Colab.  
+- Ensure your input is properly formatted to maintain consistency in output.  
+
+### 4. Evaluate the output using these metrics:
+- **Faithfulness:** Are generated quizzes or grades grounded in the input content?  
+- **Answer Relevance:** Do the graded responses align with expected answers?  
+- **Technical Term Coverage:** Are domain-specific terms correctly handled?  
+- **Scoring Accuracy:** Are the computed grades and feedback correct and fair?  
+
+---
+
+This workflow ensures that your AI agent can **automatically generate quizzes, grade student responses, and provide feedback** with high reliability and consistency in a Google Colab environment.
+
 
