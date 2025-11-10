@@ -183,3 +183,7 @@ def generate_quiz_and_grade(student_input, course_domain, examples=None):
 
     return validated_output
 
+**
+### Evaluation Metrics (Adapted from RAGAS Framework)**
+
+Both zero-shot and few-shot prompts support automated quality assessment of generated quizzes and AI-graded responses.
