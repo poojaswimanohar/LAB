@@ -185,6 +185,7 @@ def extract_requirements(document, domain, standards):
     
     return validated_frs
 
+---
 
 
 # Evaluation Metrics (From RAGAS Framework)
