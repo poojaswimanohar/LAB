@@ -185,3 +185,13 @@ def extract_requirements(document, domain, standards):
     
     return validated_frs
 
+
+
+# Evaluation Metrics (From RAGAS Framework)
+
+Both zero-shot and few-shot prompts support **automated quality assessment** of generated quizzes and AI-graded responses.
+
+| Metric                     | Description                                   | Target |
+|-----------------------------|-----------------------------------------------|--------|
+| **Faithfulness**            | Functional Requirements (FRs) are grounded in source content | ≥ 0.90 |
+|
