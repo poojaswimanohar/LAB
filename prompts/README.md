@@ -7,14 +7,16 @@ The system allows educators to automatically generate quizzes, grade both object
 The AI agent is conceptualized as an **end-to-end solution**:
 
 ```mermaid
-graph TD;
-    X[Input (X)] --> Pipeline[AI Agent Pipeline] --> Y[Output (y)];
-    Pipeline --> DU[Data Understanding];
-    DU --> QG[Question Generation];
-    QG --> QS[Quiz Structuring & Formatting];
-    QS --> RE[Response Evaluation (Objective & Subjective)];
-    RE --> AG[AI Grading & Feedback Generation];
-    AG --> PS[Performance Summary & Analytics];
+graph TD
+    A[Input (X)] --> B[AI Agent Pipeline]
+    B --> C[Data Understanding]
+    C --> D[Question Generation]
+    D --> E[Quiz Structuring & Formatting]
+    E --> F[Response Evaluation (Objective & Subjective)]
+    F --> G[AI Grading & Feedback Generation]
+    G --> H[Performance Summary & Analytics]
+    H --> I[Output (y)]
+
 
 
 **Input (X):** Topic, syllabus, learning material, or student responses  
