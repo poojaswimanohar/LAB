@@ -199,13 +199,76 @@ This setup ensures the AI-generated quizzes and grading outputs are **accurate, 
 
 ---
 
-**Linkable anchor:**  
+### Domain-Specific Adaptations for Online Quiz Maker
+### Domain-Specific Adaptations
 
-In GitHub Markdown, you can link directly to this section using its heading as an anchor. For example:
+The prompts can be adapted for various educational domains by modifying:
 
-```markdown
-[Evaluation Metrics](#evaluation-metrics-from-ragas-framework)
+**Course Standards:**
 
+- Computer Science: ACM CS Curriculum, IEEE Software Guidelines  
+- Mathematics: Common Core, IB Math Standards  
+- Biology / Science: AP Biology, IB Science Curriculum  
+
+**Domain Terminology:**
+
+- Computer Science: algorithm, variable, loop, function  
+- Mathematics: equation, derivative, integral, matrix  
+- Biology / Science: cell, DNA, enzyme, photosynthesis  
+
+**Quiz / Answer Types:**
+
+- Multiple Choice: standard MCQs with one or more correct answers  
+- Short Answer: written answers graded by AI NLP models  
+- Coding / Programming: code submissions graded using test cases and outputs  
+- True/False / Fill-in-the-Blank: automatically checked by AI grading logic  
+
+### Expected Output Format
+
+All prompts generate quizzes and AI-graded responses in the following structured format:
+
+Quiz-[ID]: The system shall [generate question / grade answer] [with correct answer or feedback] [under specified conditions].
+Source: "[exact quote from input or student response]"
+Domain Terms: [term1, term2, term3]
+Standards / Tags: [Course standard or guideline]
+Confidence Score: [0.0-1.0]
+
+### Expected Output Format
+
+<pre><code>
+Quiz-[ID]: The system shall [generate question / grade answer] [with correct answer or feedback] [under specified conditions].
+Source: "[exact quote from input or student response]"
+Domain Terms: [term1, term2, term3]
+Standards / Tags: [Course standard or guideline]
+Confidence Score: [0.0-1.0]
+
+Example:
+
+Quiz-001: The system shall generate a multiple-choice question on the concept of loops in Python with one correct answer and three distractors.
+Source: "Introduction to loops in Python from the course material"
+Domain Terms: [loop, iteration, Python]
+Standards / Tags: ACM CS Curriculum, IEEE Guidelines
+Confidence Score: 0.95
+</code></pre>
+
+### Validation Checklist
+
+Before considering output complete, verify:
+
+- All quizzes and AI-graded responses follow a consistent and clear format.  
+- Each question or graded response traces back to source material or student input.  
+- Domain-specific terminology is correctly identified and applied.  
+- Applicable course standards or guidelines are tagged.  
+- No hallucinated content (all questions, answers, and feedback are grounded in input).  
+- Ambiguous language is avoided (questions and feedback are clear and testable).  
+- Completeness: all learning objectives and functional aspects are addressed.
+
+### Key Technologies
+
+- Large Language Models (GPT-4, BERT, T-5)  
+- Retrieval-Augmented Generation (RAG)  
+- RAGAS Evaluation Framework  
+- Google Colab / Python for interactive quiz generation and grading
 
 
 
