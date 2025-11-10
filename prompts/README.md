@@ -183,21 +183,29 @@ def generate_quiz_and_grade(student_input, course_domain, examples=None):
 
     return validated_output
   </code></pre>
-# Online Quiz Maker – System Architecture
+### Evaluation Metrics (From RAGAS Framework)
 
-The AI agent for **Online Quiz Maker** functions as an end-to-end solution for **quiz creation and automated grading**.
+Both zero-shot and few-shot prompts support automated quality assessment of generated quizzes and AI-graded responses.
 
-| Step | Component | Description |
-|------|-----------|-------------|
-| 1 | **Input (X)** | Raw quiz content, student answers, or course material provided by the user. |
-| 2 | **Document Preprocessing** | Cleans, normalizes, and segments input for downstream processing. |
-| 3 | **Knowledge Base Construction** | Organizes processed content into a searchable knowledge repository for context retrieval. |
-| 4 | **Contextual Retrieval (RAG)** | Fetches relevant context from the knowledge base to guide the LLM for quiz generation and grading. |
-| 5 | **LLM Processing & Generation** | Uses LLMs (e.g., GPT, BERT) to create quizzes, grade answers, and provide feedback. |
-| 6 | **Quality Validation** | Ensures generated quizzes and grades are accurate, complete, consistent, and aligned with course standards. |
-| 7 | **Output (y)** | Structured quizzes, grades, and feedback ready for review or delivery to students. |
+| Metric                     | Description                                                                 | Target |
+|-----------------------------|-----------------------------------------------------------------------------|--------|
+| **Faithfulness**            | Generated quizzes and grades are grounded in the source content (input material or syllabus). | ≥ 0.90 |
+| **Answer Relevance**        | AI-graded responses align with expected answers or learning objectives.     | ≥ 0.90 |
+| **Technical Term Coverage** | Domain-specific terminology is correctly recognized and applied in questions and answers. | ≥ 0.85 |
+| **Compliance / Standards Score** | Generated content aligns with course or regulatory standards (curriculum, guidelines, HIPAA, etc.). | ≥ 0.95 |
+| **Recall@k**                | Expected correct answers, key points, or learning objectives appear within the top-k AI outputs. | ≥ 0.80 |
 
-**Workflow Overview:**  
+This setup ensures the AI-generated quizzes and grading outputs are **accurate, consistent, and educationally reliable**.
+
+---
+
+**Linkable anchor:**  
+
+In GitHub Markdown, you can link directly to this section using its heading as an anchor. For example:
+
+```markdown
+[Evaluation Metrics](#evaluation-metrics-from-ragas-framework)
+
 
 
 
