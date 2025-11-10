@@ -143,4 +143,42 @@ This directory contains prompt examples for the **AI-powered Online Quiz Maker**
 
 This workflow ensures that your AI agent can **automatically generate quizzes, grade student responses, and provide feedback** with high reliability and consistency in a Google Colab environment.
 
+# Integration with RAG System
+
+These prompts can be integrated into your **RAG pipeline** for AI-powered quiz generation and grading.
+
+```python
+def generate_quiz_and_grade(student_input, course_domain, examples=None):
+    """
+    RAG-style pipeline for quiz creation and AI grading.
+    
+    Args:
+        student_input (str): Raw quiz content or student responses.
+        course_domain (str): Domain of the quiz (e.g., Computer Science, Math).
+        examples (list, optional): Few-shot examples for improved accuracy.
+        
+    Returns:
+        dict: Structured output containing quizzes, grades, and feedback.
+    """
+
+    # 1. Preprocess input
+    cleaned_input = preprocess(student_input)
+
+    # 2. Retrieve relevant context from knowledge base
+    context = rag_retrieval(cleaned_input, course_domain)
+
+    # 3. Construct prompt with context
+    if examples:
+        prompt = construct_few_shot_prompt(cleaned_input, context, examples)
+    else:
+        prompt = construct_zero_shot_prompt(cleaned_input, context)
+
+    # 4. Generate quizzes or grades via LLM
+    output = llm.generate(prompt)
+
+    # 5. Validate and structure output
+    validated_output = validate_quiz_and_grades(output, course_domain)
+
+    return validated_output
+
 
