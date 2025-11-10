@@ -77,15 +77,19 @@ Undergraduate Computer Science – “Python Basics”
 4. Review the output: generated quiz, graded answers, and feedback.  
 
 ---
-Question ID: Q-001
-Question: What is the output of print(2 ** 3)?
-Options: [A] 5, [B] 6, [C] 8, [D] 9
-Correct Answer: [C]
-Difficulty: Easy
-Student Answer: "8"
-Score: 1.0
-Feedback: Correct! You understood the concept of exponentiation.
-Confidence Score: 0.97
+**Question ID:** Q-001  
+**Question:** What is the output of `print(2 ** 3)`?  
+**Options:**  
+- A) 5  
+- B) 6  
+- C) 8  
+- D) 9  
+**Correct Answer:** C  
+**Difficulty:** Easy  
+**Student Answer:** "8"  
+**Score:** 1.0  
+**Feedback:** Correct! You understood the concept of exponentiation.  
+**Confidence Score:** 0.97  
 
 ---
 
