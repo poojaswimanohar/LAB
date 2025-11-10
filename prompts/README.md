@@ -194,4 +194,7 @@ Both zero-shot and few-shot prompts support **automated quality assessment** of 
 | Metric                     | Description                                   | Target |
 |-----------------------------|-----------------------------------------------|--------|
 | **Faithfulness**            | Functional Requirements (FRs) are grounded in source content | ≥ 0.90 |
-|
+| **Answer Relevance**        | FRs address the intent of the input document | ≥ 0.90 |
+| **Technical Term Coverage** | Domain-specific terminology is captured accurately | ≥ 0.85 |
+| **Compliance Score**        | Alignment with relevant regulatory or domain standards | ≥ 0.95 |
+| **Recall@k**                | Expected FRs appear within the top-k generated outputs | ≥ 0.80 |
