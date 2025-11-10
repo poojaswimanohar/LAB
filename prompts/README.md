@@ -184,4 +184,16 @@ def generate_quiz_and_grade(student_input, course_domain, examples=None):
 
     return validated_output
 
+### Evaluation Metrics (From RAGAS Framework)
+
+Both zero-shot and few-shot prompts support automated quality assessment of generated quizzes and AI-graded responses.
+
+- **Faithfulness:** Generated quizzes and grades are grounded in the source content (input material or syllabus). Target ≥ 0.90  
+- **Answer Relevance:** AI-graded responses align with expected answers or learning objectives. Target ≥ 0.90  
+- **Technical Term Coverage:** Domain-specific terminology is correctly recognized and applied in questions and answers. Target ≥ 0.85  
+- **Compliance / Standards Score:** Generated content aligns with course or regulatory standards (curriculum, guidelines, HIPAA, etc.). Target ≥ 0.95  
+- **Recall@k:** Expected correct answers, key points, or learning objectives appear within the top-k AI outputs. Target ≥ 0.80  
+
+This setup ensures the AI-generated quizzes and grading outputs are accurate, consistent, and educationally reliable.
+
 
