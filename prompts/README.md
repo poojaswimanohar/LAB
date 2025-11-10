@@ -20,12 +20,5 @@ graph TD;
     E --> F["Response Evaluation"];
     F --> G["AI Grading & Feedback Generation"];
     G --> H["Performance Summary & Analytics"];
-    H --> I["Output (y)"];```
-
-
-## System Input and Output
-
-**Input (X):** Topic, syllabus, learning material, or student responses  
-**Output (y):** Generated quiz, graded answers, feedback, and performance summary
-
+    H --> I["Output (y)"];
 
