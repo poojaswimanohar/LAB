@@ -182,10 +182,8 @@ def generate_quiz_and_grade(student_input, course_domain, examples=None):
     # 5. Validate and structure output
     validated_output = validate_quiz_and_grades(output, course_domain)
 
-    return validated_output
+    return validated_output```
 
 ---
 
-Evaluation Metrics (From RAGAS Framework)
 
-Both zero-shot and few-shot prompts support automated quality assessment.
