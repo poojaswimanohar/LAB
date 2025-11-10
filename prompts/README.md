@@ -157,38 +157,33 @@ Both zero-shot and few-shot prompts support **automated quality assessment** of 
 
 ---
 
-## Pseudocode Example
+# Pseudocode Example: RAG-Style Quiz Generation and Grading
 
 ```python
-def extract_requirements(document, domain, standards):
+def generate_quiz_and_grade(student_input, course_domain, examples=None):
     """
-    RAG-style pipeline for extracting structured requirements.
+    RAG-style pipeline for quiz creation and AI grading.
     """
+    # 1. Preprocess input
+    cleaned_input = preprocess(student_input)
 
-    # 1. Preprocess document
-    cleaned_doc = preprocess(document)
-    
     # 2. Retrieve relevant context from knowledge base
-    context = rag_retrieval(cleaned_doc, domain)
-    
-    # 3. Construct prompt with context
-    if has_training_examples:
-        prompt = construct_few_shot_prompt(cleaned_doc, context, examples)
-    else:
-        prompt = construct_zero_shot_prompt(cleaned_doc, context)
-    
-    # 4. Generate requirements via LLM
-    requirements = llm.generate(prompt)
-    
-    # 5. Validate and structure output
-    validated_frs = validate_requirements(requirements, standards)
-    
-    return validated_frs
+    context = rag_retrieval(cleaned_input, course_domain)
 
-| Metric                           | Description                                                                                        | Target |
-| -------------------------------- | -------------------------------------------------------------------------------------------------- | ------ |
-| **Faithfulness**                 | Generated quizzes and grades are grounded in source content (input material or syllabus)           | ≥ 0.90 |
-| **Answer Relevance**             | AI-graded responses align with expected answers or learning objectives                             | ≥ 0.90 |
-| **Technical Term Coverage**      | Domain-specific terminology is correctly recognized and applied in questions and answers           | ≥ 0.85 |
-| **Compliance / Standards Score** | Generated content aligns with course or regulatory standards (curriculum, guidelines, HIPAA, etc.) | ≥ 0.95 |
-| **Recall@k**                     | Expected correct answers, key points, or learning objectives appear within the top-k AI outputs    | ≥ 0.80 |
+    # 3. Construct prompt with context
+    if examples:
+        prompt = construct_few_shot_prompt(cleaned_input, context, examples)
+    else:
+        prompt = construct_zero_shot_prompt(cleaned_input, context)
+
+    # 4. Generate quizzes or grades via LLM
+    output = llm.generate(prompt)
+
+    # 5. Validate and structure output
+    validated_output = validate_quiz_and_grades(output, course_domain)
+
+    return validated_output
+
+---
+
+
