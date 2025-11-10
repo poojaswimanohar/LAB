@@ -143,9 +143,11 @@ This directory contains prompt examples for the **AI-powered Online Quiz Maker**
 
 This workflow ensures that your AI agent can **automatically generate quizzes, grade student responses, and provide feedback** with high reliability and consistency in a Google Colab environment.
 
-# Integration with RAG System
+# AI-Powered Quiz Generation and Grading (RAG Pipeline)
 
-These prompts can be integrated into your **RAG pipeline** for AI-powered quiz generation and grading.
+This section demonstrates how the Online Quiz Maker AI agent can be integrated into a **RAG-style pipeline** for quiz creation and automated grading.
+
+## RAG Pipeline Example
 
 ```python
 def generate_quiz_and_grade(student_input, course_domain, examples=None):
@@ -181,6 +183,3 @@ def generate_quiz_and_grade(student_input, course_domain, examples=None):
 
     return validated_output
 
-Evaluation Metrics (Adapted from RAGAS Framework)
-
-Both zero-shot and few-shot prompts support automated quality assessment of generated quizzes and AI-graded responses.
