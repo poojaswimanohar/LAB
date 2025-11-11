@@ -222,34 +222,6 @@ The prompts can be adapted for various educational domains by modifying:
 - Coding / Programming: code submissions graded using test cases and outputs  
 - True/False / Fill-in-the-Blank: automatically checked by AI grading logic  
 
-### Expected Output Format
-
-All prompts generate quizzes and AI-graded responses in the following structured format:
-
-Quiz-[ID]: The system shall [generate question / grade answer] [with correct answer or feedback] [under specified conditions].
-Source: "[exact quote from input or student response]"
-Domain Terms: [term1, term2, term3]
-Standards / Tags: [Course standard or guideline]
-Confidence Score: [0.0-1.0]
-
-### Expected Output Format
-
-<pre><code>
-Quiz-[ID]: The system shall [generate question / grade answer] [with correct answer or feedback] [under specified conditions].
-Source: "[exact quote from input or student response]"
-Domain Terms: [term1, term2, term3]
-Standards / Tags: [Course standard or guideline]
-Confidence Score: [0.0-1.0]
-
-Example:
-
-Quiz-001: The system shall generate a multiple-choice question on the concept of loops in Python with one correct answer and three distractors.
-Source: "Introduction to loops in Python from the course material"
-Domain Terms: [loop, iteration, Python]
-Standards / Tags: ACM CS Curriculum, IEEE Guidelines
-Confidence Score: 0.95
-</code></pre>
-
 ### Validation Checklist
 
 Before considering output complete, verify:
