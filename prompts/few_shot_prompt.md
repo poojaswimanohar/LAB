@@ -38,10 +38,8 @@ It should use prior examples to generate consistent grades and provide concise, 
 
 
 Question 1 Grade: <A/B/C/D/F>
-Explanation: <Brief explanation>
 
 Question 2 Grade: <A/B/C/D/F>
-Explanation: <Brief explanation>
 
 
 ## Few-Shot Examples (Full Quiz)
