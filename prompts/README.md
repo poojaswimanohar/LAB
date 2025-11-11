@@ -104,7 +104,6 @@ This directory contains prompt examples for the **AI-powered Online Quiz Maker**
 
 **New Task:** AI-Powered Grading of Student Responses in Google Colab for a Machine Learning course  
 
-[View `few_shot_prompt.md`](./few_shot_prompt.md)  
 
 ---
 
