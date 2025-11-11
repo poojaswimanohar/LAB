@@ -77,9 +77,7 @@ This directory contains prompt examples for the **AI-powered Online Quiz Maker**
 - Domain-specific terminology recognition  
 - Quality metrics computation (accuracy, completeness, fairness)  
 
-**Example Domain:** Undergraduate Computer Science course quiz  
-
-[View `simple_zero_shot_prompt.md`](./simple_zero_shot_prompt.md)  
+**Example Domain:** Undergraduate Computer Science course quiz   
 
 ---
 
