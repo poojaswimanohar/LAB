@@ -1,0 +1,396 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMO2Y9aU2fcrNeHWCaDJKmL",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/poojaswimanohar/LAB/blob/main/Notebooks\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Lab 5 – Online Quiz Maker using Gemini API\n",
+        "\n",
+        "**Author:** Mohini Naga Venkata Poojaswi Kankipati  \n",
+        "**Thesis:** Online Quiz Maker using AI-powered prompt engineering\n",
+        "\n",
+        "**Description:**  \n",
+        "This notebook demonstrates an AI system that generates quizzes and grades student answers end-to-end.  \n",
+        "It integrates prompt engineering (zero-shot and few-shot prompts) and uses the Gemini API to generate real outputs.\n"
+      ],
+      "metadata": {
+        "id": "86qvFH4DCYi5"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "The API key is securely stored in Colab secrets and loaded without hardcoding.\n",
+        "\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "v7uDygrbCa3V"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "from google.colab import userdata\n",
+        "\n",
+        "# Load GEMINI_KEY securely from Colab secrets\n",
+        "GEMINI_KEY = userdata.get('GEMINI_KEY')\n",
+        "os.environ[\"GEMINI_API_KEY\"] = GEMINI_KEY\n",
+        "print(\"Gemini API key loaded successfully (not displayed).\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yyHO5Pg_CVQE",
+        "outputId": "5d18791e-7770-428a-a0ee-fdf4d7c8e717"
+      },
+      "execution_count": 25,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Gemini API key loaded successfully (not displayed).\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "We install the official Google Gen AI SDK (`google-genai`) and initialize the client.\n"
+      ],
+      "metadata": {
+        "id": "ZDQOGUC2Cgkx"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Install Gemini client library\n",
+        "!pip install --quiet google-genai\n",
+        "\n",
+        "# Import library and initialize client\n",
+        "from google import genai\n",
+        "\n",
+        "client = genai.Client(api_key=GEMINI_KEY)\n"
+      ],
+      "metadata": {
+        "id": "T9mU8h2DChQU"
+      },
+      "execution_count": 27,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "Prompts are stored in the repository and imported for quiz generation and grading.\n"
+      ],
+      "metadata": {
+        "id": "6eVGSXXaCnv3"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "\n",
+        "# Paths to prompt files\n",
+        "zero_shot_path = '/content/Prompts/Zero_shot_prompt.md'\n",
+        "few_shot_path = '/content/Prompts/Few_shot_Prompt.md'\n",
+        "\n",
+        "# Load zero-shot prompt\n",
+        "if os.path.exists(zero_shot_path):\n",
+        "    with open(zero_shot_path, 'r') as f:\n",
+        "        zero_shot_prompt = f.read()\n",
+        "    print(\"Zero-shot prompt loaded successfully.\")\n",
+        "else:\n",
+        "    print(f\"File not found: {zero_shot_path}\")\n",
+        "\n",
+        "# Load few-shot prompt\n",
+        "if os.path.exists(few_shot_path):\n",
+        "    with open(few_shot_path, 'r') as f:\n",
+        "        few_shot_prompt = f.read()\n",
+        "    print(\"Few-shot prompt loaded successfully.\")\n",
+        "else:\n",
+        "    print(f\"File not found: {few_shot_path}\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lMHLOTVQCobK",
+        "outputId": "259e36c4-770c-44d5-e630-66e5c3c5e7cc"
+      },
+      "execution_count": 28,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Zero-shot prompt loaded successfully.\n",
+            "Few-shot prompt loaded successfully.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "The zero-shot prompt is used to generate quiz questions via the Gemini API.\n",
+        "We limit the output tokens to reduce API usage.\n"
+      ],
+      "metadata": {
+        "id": "UE2ikXM5CyRK"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Step 5: Generate Quiz (Real API Call)\n",
+        "\n",
+        "# Define topic\n",
+        "topic = \"Photosynthesis in plants\"\n",
+        "\n",
+        "# Prepare prompt by inserting topic into your zero-shot prompt\n",
+        "quiz_prompt = zero_shot_prompt.replace(\"{topic}\", topic)\n",
+        "\n",
+        "# Call Gemini API correctly (latest google-genai)\n",
+        "response = client.models.generate_content(\n",
+        "    model=\"gemini-2.5-flash\",\n",
+        "    contents=[{\"text\": quiz_prompt}]\n",
+        ")\n",
+        "\n",
+        "# Extract the generated quiz text\n",
+        "generated_quiz = response.text\n",
+        "\n",
+        "# Display the quiz\n",
+        "print(\"Generated Quiz:\\n\")\n",
+        "print(generated_quiz)\n",
+        "\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Eg3qR0B7Cy5z",
+        "outputId": "cf150512-a20c-417e-a55a-037fe0a52058"
+      },
+      "execution_count": 33,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Generated Quiz:\n",
+            "\n",
+            "```json\n",
+            "[\n",
+            "  {\n",
+            "    \"question\": \"Which type of machine learning requires a dataset where each input example is paired with an output label?\",\n",
+            "    \"options\": {\"A\": \"Supervised learning\", \"B\": \"Unsupervised learning\", \"C\": \"Reinforcement learning\", \"D\": \"Semi-supervised learning\"},\n",
+            "    \"answer\": \"A\"\n",
+            "  },\n",
+            "  {\n",
+            "    \"question\": \"Which of the following tasks is a common application of unsupervised learning?\",\n",
+            "    \"options\": {\"A\": \"Predicting a house price based on its features\", \"B\": \"Classifying an email as spam or not spam\", \"C\": \"Grouping similar customer segments together\", \"D\": \"Identifying if an image contains a cat or a dog\"},\n",
+            "    \"answer\": \"C\"\n",
+            "  },\n",
+            "  {\n",
+            "    \"question\": \"In the context of 'Supervised vs Unsupervised Learning', which statement is true about how they handle data?\",\n",
+            "    \"options\": {\"A\": \"Supervised learning primarily focuses on finding hidden structures in unlabeled data.\", \"B\": \"Unsupervised learning uses labeled data to train predictive models.\", \"C\": \"Supervised learning aims to map input features to output labels.\", \"D\": \"Both supervised and unsupervised learning require explicit feedback signals during training.\"},\n",
+            "    \"answer\": \"C\"\n",
+            "  }\n",
+            "]\n",
+            "```\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "The few-shot prompt is used to grade example student answers via Gemini API. We limit API calls by using 1–2 sample answers."
+      ],
+      "metadata": {
+        "id": "Xq_iP3AJFy5S"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Example student answers\n",
+        "student_answers = {\n",
+        "    \"Q1\": \"To convert sunlight into chemical energy.\",\n",
+        "    \"Q2\": \"Carbon dioxide\"\n",
+        "}\n",
+        "\n",
+        "graded_results = {}\n",
+        "\n",
+        "# Call Gemini API for grading (latest SDK)\n",
+        "for q, ans in student_answers.items():\n",
+        "    # Replace placeholders in few-shot prompt\n",
+        "    grading_prompt = few_shot_prompt.replace(\"{question}\", q).replace(\"{answer}\", ans)\n",
+        "\n",
+        "    # Call Gemini API\n",
+        "    response = client.models.generate_content(\n",
+        "        model=\"gemini-2.5-flash\",\n",
+        "        contents=[{\"text\": grading_prompt}]\n",
+        "    )\n",
+        "\n",
+        "    # Save graded output\n",
+        "    graded_results[q] = response.text\n",
+        "\n",
+        "# Display graded results\n",
+        "print(\"\\n--- Graded Results ---\")\n",
+        "for q, result in graded_results.items():\n",
+        "    print(f\"{q} => {student_answers[q]} => {result}\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "aJrkpVjEFzqN",
+        "outputId": "fb3bfc1f-fd92-4f06-ff66-7ded5b700e51"
+      },
+      "execution_count": 34,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "--- Graded Results ---\n",
+            "Q1 => To convert sunlight into chemical energy. => ```json\n",
+            "[\n",
+            "  {\"question\":\"Which type of learning uses labeled training data?\",\"options\":{\"A\":\"Unsupervised Learning\",\"B\":\"Reinforcement Learning\",\"C\":\"Supervised Learning\",\"D\":\"Semi-supervised Learning\"},\"answer\":\"C\"},\n",
+            "  {\"question\":\"Which algorithm is an example of unsupervised learning?\",\"options\":{\"A\":\"Linear Regression\",\"B\":\"Decision Trees\",\"C\":\"K-Means Clustering\",\"D\":\"Logistic Regression\"},\"answer\":\"C\"},\n",
+            "  {\"question\":\"What is the main goal of supervised learning?\",\"options\":{\"A\":\"Find hidden patterns in data\",\"B\":\"Predict outcomes based on input-output pairs\",\"C\":\"Group similar data points\",\"D\":\"Maximize rewards through trial and error\"},\"answer\":\"B\"}\n",
+            "]\n",
+            "```\n",
+            "Q2 => Carbon dioxide => ```json\n",
+            "[\n",
+            "  {\"question\":\"Which type of learning uses labeled training data?\",\"options\":{\"A\":\"Unsupervised Learning\",\"B\":\"Reinforcement Learning\",\"C\":\"Supervised Learning\",\"D\":\"Semi-supervised Learning\"},\"answer\":\"C\"},\n",
+            "  {\"question\":\"Which algorithm is an example of unsupervised learning?\",\"options\":{\"A\":\"Linear Regression\",\"B\":\"Decision Trees\",\"C\":\"K-Means Clustering\",\"D\":\"Logistic Regression\"},\"answer\":\"C\"},\n",
+            "  {\"question\":\"What is the main goal of supervised learning?\",\"options\":{\"A\":\"Find hidden patterns in data\",\"B\":\"Predict outcomes based on input-output pairs\",\"C\":\"Group similar data points\",\"D\":\"Maximize rewards through trial and error\"},\"answer\":\"B\"}\n",
+            "]\n",
+            "```\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        " End-to-End Process Demonstrates the full pipeline: 1. Topic input 2. Quiz generation (zero-shot) 3. Student answer grading (few-shot) 4. Display output"
+      ],
+      "metadata": {
+        "id": "1UyMuNsLF98p"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "print(\"\\n--- End-to-End Process ---\")\n",
+        "print(\"Topic:\", topic)\n",
+        "\n",
+        "print(\"\\n--- Generated Quiz ---\")\n",
+        "print(generated_quiz)\n",
+        "\n",
+        "print(\"\\n--- Graded Answers ---\")\n",
+        "for q, result in graded_results.items():\n",
+        "    print(f\"{q} => {student_answers[q]} => {result}\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UNQNoUCkF-lV",
+        "outputId": "eff8104e-9af5-4337-e020-98524e2e8460"
+      },
+      "execution_count": 35,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "--- End-to-End Process ---\n",
+            "Topic: Photosynthesis in plants\n",
+            "\n",
+            "--- Generated Quiz ---\n",
+            "```json\n",
+            "[\n",
+            "  {\n",
+            "    \"question\": \"Which type of machine learning requires a dataset where each input example is paired with an output label?\",\n",
+            "    \"options\": {\"A\": \"Supervised learning\", \"B\": \"Unsupervised learning\", \"C\": \"Reinforcement learning\", \"D\": \"Semi-supervised learning\"},\n",
+            "    \"answer\": \"A\"\n",
+            "  },\n",
+            "  {\n",
+            "    \"question\": \"Which of the following tasks is a common application of unsupervised learning?\",\n",
+            "    \"options\": {\"A\": \"Predicting a house price based on its features\", \"B\": \"Classifying an email as spam or not spam\", \"C\": \"Grouping similar customer segments together\", \"D\": \"Identifying if an image contains a cat or a dog\"},\n",
+            "    \"answer\": \"C\"\n",
+            "  },\n",
+            "  {\n",
+            "    \"question\": \"In the context of 'Supervised vs Unsupervised Learning', which statement is true about how they handle data?\",\n",
+            "    \"options\": {\"A\": \"Supervised learning primarily focuses on finding hidden structures in unlabeled data.\", \"B\": \"Unsupervised learning uses labeled data to train predictive models.\", \"C\": \"Supervised learning aims to map input features to output labels.\", \"D\": \"Both supervised and unsupervised learning require explicit feedback signals during training.\"},\n",
+            "    \"answer\": \"C\"\n",
+            "  }\n",
+            "]\n",
+            "```\n",
+            "\n",
+            "--- Graded Answers ---\n",
+            "Q1 => To convert sunlight into chemical energy. => ```json\n",
+            "[\n",
+            "  {\"question\":\"Which type of learning uses labeled training data?\",\"options\":{\"A\":\"Unsupervised Learning\",\"B\":\"Reinforcement Learning\",\"C\":\"Supervised Learning\",\"D\":\"Semi-supervised Learning\"},\"answer\":\"C\"},\n",
+            "  {\"question\":\"Which algorithm is an example of unsupervised learning?\",\"options\":{\"A\":\"Linear Regression\",\"B\":\"Decision Trees\",\"C\":\"K-Means Clustering\",\"D\":\"Logistic Regression\"},\"answer\":\"C\"},\n",
+            "  {\"question\":\"What is the main goal of supervised learning?\",\"options\":{\"A\":\"Find hidden patterns in data\",\"B\":\"Predict outcomes based on input-output pairs\",\"C\":\"Group similar data points\",\"D\":\"Maximize rewards through trial and error\"},\"answer\":\"B\"}\n",
+            "]\n",
+            "```\n",
+            "Q2 => Carbon dioxide => ```json\n",
+            "[\n",
+            "  {\"question\":\"Which type of learning uses labeled training data?\",\"options\":{\"A\":\"Unsupervised Learning\",\"B\":\"Reinforcement Learning\",\"C\":\"Supervised Learning\",\"D\":\"Semi-supervised Learning\"},\"answer\":\"C\"},\n",
+            "  {\"question\":\"Which algorithm is an example of unsupervised learning?\",\"options\":{\"A\":\"Linear Regression\",\"B\":\"Decision Trees\",\"C\":\"K-Means Clustering\",\"D\":\"Logistic Regression\"},\"answer\":\"C\"},\n",
+            "  {\"question\":\"What is the main goal of supervised learning?\",\"options\":{\"A\":\"Find hidden patterns in data\",\"B\":\"Predict outcomes based on input-output pairs\",\"C\":\"Group similar data points\",\"D\":\"Maximize rewards through trial and error\"},\"answer\":\"B\"}\n",
+            "]\n",
+            "```\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
