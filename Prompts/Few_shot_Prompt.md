@@ -60,10 +60,7 @@ Topic: "Supervised vs Unsupervised Machine Learning"
 Expected Output:**
 
 [
-  {
-    "question": "Which type of learning uses labeled data?",
-    "options": {"A": "Supervised", "B": "Unsupervised", "C": "Reinforcement", "D": "Self-Supervised"},
-    "answer": "A"
-  },
-  ...
+  {"question":"Which type of learning uses labeled training data?","options":{"A":"Unsupervised Learning","B":"Reinforcement Learning","C":"Supervised Learning","D":"Semi-supervised Learning"},"answer":"C"},
+  {"question":"Which algorithm is an example of unsupervised learning?","options":{"A":"Linear Regression","B":"Decision Trees","C":"K-Means Clustering","D":"Logistic Regression"},"answer":"C"},
+  {"question":"What is the main goal of supervised learning?","options":{"A":"Find hidden patterns in data","B":"Predict outcomes based on input-output pairs","C":"Group similar data points","D":"Maximize rewards through trial and error"},"answer":"B"}
 ]
