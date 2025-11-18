@@ -13,7 +13,7 @@ The notebook integrates real API calls using the Gemini key stored securely in C
 
 ## Notebook
 
-**Colab Notebook:** [Lab5_Online_Quiz_Maker.ipynb](notebooks/Lab5_Online_Quiz_Maker.ipynb)
+**Colab Notebook:** [OnlineQuizMaker.ipynb](notebooks/OnlineQuizMaker.ipynb)
 
 **Contents:**
 1. **Step 1:** Load Gemini API key securely from Colab Secrets
